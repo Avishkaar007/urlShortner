@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+
+    <h1>Url Shortner</h1>
+    <main>
+        <div class="section">
+            <input type="url" name="" id="longurl" placeholder="Enter your long url here">
+        </div>
+        <div class="subsection1">
+            <button value="Shorten" id="shorten" onclick="shorten()">Shorten</button>
+            <button id="copy" onclick="copyToClipboard()">Copy URL</button>
+        </div>
+        <div class="section">
+            <input type="text" id="shorturl" placeholder="Shorter Url here">
+            <div id="notification" class="notification"></div>
+    
+        </div>
+    </main>
+    
+
+    <script type="application/javascript" src="./shorten.js"></script>
+</body>
+
+</html>
