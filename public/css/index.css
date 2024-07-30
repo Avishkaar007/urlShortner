@@ -6,21 +6,30 @@ body {
     margin: 0;
     background-color: #f9f9f9;
 }
-main{
+
+main {
     display: flex;
     flex-direction: column;
-    justify-content: center ;
-    
-    
+    justify-content: center;
+    align-items: center;
+
 }
-.subsection1{
+
+.section {
+    width: 100%;
+    min-width: 400px;
     max-width: 600px;
+    padding: 10px;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.subsection1 {
     display: flex;
     justify-content: space-evenly;
-        padding: 10px;
-    box-sizing: border-box;
-    height: 4rem;
 }
+
 h1 {
     color: #333;
     margin-bottom: 20px;
@@ -38,17 +47,19 @@ input[type="text"] {
     max-width: 600px;
 }
 
-button{
-    width:50%;
-    max-width:300px;
+button {
+    width: 30%;
+    min-width: 200px;
+    max-width: 300px;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-#copy{
+#copy {
     background-color: #0056b3;
 }
+
 input[type="url"],
 input[type="text"] {
     font-size: 16px;
@@ -93,21 +104,17 @@ button:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
 
-    input[type="url"],
-    input[type="text"],
-    input[type="button"],
+
     button {
-        width: 90%;
+        width: 20%;
     }
 }
 
 @media (max-width: 480px) {
 
-    input[type="url"],
-    input[type="text"],
-    input[type="button"],
+
     button {
-        width: 100%;
+        width: 40%;
     }
 }
 
@@ -116,10 +123,9 @@ button:hover {
         font-size: 20px;
     }
 
-    input[type="url"],
-    input[type="text"],
-    input[type="button"],
     button {
+        max-width: 120px;
+        width: 20%;
         font-size: 14px;
     }
 

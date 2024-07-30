@@ -4,12 +4,11 @@ function copyToClipboard() {
   urlInput.setSelectionRange(0, 99999); // For mobile devices
 
   try {
-    const successful = document.execCommand('copy');
-    const msg = successful ? 'URL copied to clipboard!' : 'Failed to copy URL';
-    showNotification(msg);
+      const successful = document.execCommand('copy');
+      showNotification(successful ? 'URL copied to clipboard!' : 'Failed to copy URL');
   } catch (err) {
-    console.error('Oops, unable to copy', err);
-    showNotification('Failed to copy URL');
+      console.error('Oops, unable to copy', err);
+      showNotification('Failed to copy URL');
   }
 }
 
@@ -19,15 +18,28 @@ function showNotification(message) {
   notification.classList.add('show');
 
   // Hide the notification after 3 seconds
-  setTimeout(() => {
-    notification.classList.remove('show');
-  }, 3000);
+  setTimeout(() => notification.classList.remove('show'), 3000);
 }
+
 function shorten() {
-  var longurl = document.getElementById("longurl");
-  var shorturl = document.getElementById("shorturl");
-  shorturl.value = longurl.value;
-  copyToClipboard();
-
+  const longurl = document.getElementById("longurl").value;
+  const shorturl = document.getElementById("shorturl");
+  
+  fetch('/shorten', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ original: longurl })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("XXX"+data);
+      shorturl.value = data.shortUrl;
+      copyToClipboard();
+  })
+  .catch(error => console.error('Error:', error));
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('shorten').addEventListener('click', shorten);
+
+});
