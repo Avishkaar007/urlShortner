@@ -28,23 +28,22 @@ async function connectDB() {
         console.error('Failed to connect to MongoDB Atlas', error);
     }
 }
-
+const database = client.db('web');
+const collection = database.collection('urlShortner');
 // Insert a new URL entry
 async function createNewURL(short, original) {
     try {
-   
-        const result = await collection.insertOne({ short:short, original,createdAt: new Date() });
+
+        const result = await collection.insertOne({ short: short, original, createdAt: new Date() });
         console.log('New URL inserted with ID:', result.insertedId);
     } catch (error) {
         console.error("Can't insert new record:", error);
     }
 }
-const database = client.db('web');
-const collection = database.collection('urlShortner');
+
 // Find URL entry by short key
 async function findURL(short) {
     try {
-
         return await collection.findOne({ short });
     } catch (error) {
         console.error("Can't find URL record:", error);
@@ -54,7 +53,6 @@ async function findURL(short) {
 // Endpoint to shorten URL
 app.post('/shorten', async (req, res) => {
     const { original } = req.body;
-    console.log(original);
     const short = shortid.generate();
     await createNewURL(short, original);
     res.json({ shortUrl: `${short}` });
@@ -95,7 +93,7 @@ async function prune() {
 
 
 //Danger too much
-setInterval(prune,1000000)
+setInterval(prune, 1000000)
 
 
 // Start the server and connect to MongoDB

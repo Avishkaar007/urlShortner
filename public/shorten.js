@@ -32,7 +32,7 @@ function shorten() {
   })
   .then(response => response.json())
   .then(data => {
-    console.log("XXX"+data);
+    console.log("Received Data in shorten.js"+data);
       shorturl.value = data.shortUrl;
       copyToClipboard();
   })
